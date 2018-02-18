@@ -8,13 +8,16 @@
 @Z=0.500000
 IN.
 ABS
-\ This program should spin clockwise for 2 seconds
+\ This program should spin the chuck clockwise for 2 seconds
 \ then stop for 4 seconds
 \ then spin counter-clockwise for 2 seconds
 \ then stop forever  ._.
+\ THIS PROGRAM SHOULD NOT CAUSE THE BED TO MOVE
+\ THIS PROGRAM IS SAFE TO RUN AS LONG AS THERE IS NO TOOL IN THE CHUCK
 \ G04 means 'dwell' (wait) for the given number of milliseconds
-\ !!!!!!!!IF THIS CODE DOESN'T WORK, TRY TO UNCOMMENT THE NEXT LINE!!!!!!!!
-\G70
+
+\ switch to inches (although useless here, try to comment out?)
+G70
 \ spins clockwise?
 M03 500
 G04 2000
@@ -28,3 +31,4 @@ G04 2000
 M05
 \ i think this is how you end...
 M30
+
