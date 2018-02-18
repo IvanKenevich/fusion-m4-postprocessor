@@ -52,3 +52,4 @@ G04 1000
 \ back at the bottom left corner
 G00 X0 Y0
 G04 1000
+M30
