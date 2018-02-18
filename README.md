@@ -1,2 +1,3 @@
-# fusion-m4-postprocessor
-An .m4 format post processor for Lab-Volt's 5600 series mill. Designed to work with Autodesk Fusion 360
+# Based on:
+An .m5 format post processor made by people at Autodesk
+https://cam.autodesk.com/posts/?p=labvolt
