@@ -1,4 +1,5 @@
 # G codes
+## Movement
 `G00 X Y Z` Rapid feed. Performs linear interpolation between the current coordinate and the parameter given
 
 `G01 X Y Z` Feed. Linear interpolation just like *G00*
@@ -13,13 +14,19 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 
 `G03` Counterclockwise arc. See *G02*
 
+## Waiting
+
 `G04 milliseconds` Dwell (wait) for given number of milliseconds
+
+## Plane selection for arcs
 
 `G17` Switch to XY plane
 
 `G18` Switch to XZ plane
 
 `G19` Switch to YZ plane
+
+## Units of measurement
 
 `G70` Use inches from now on
 
