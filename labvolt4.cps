@@ -354,7 +354,8 @@ function onSection() {
 
     // retract to safe plane
     retracted = true;
-    writeBlock(gFormat.format(28)); // retract
+    /* G28 is not recognized */
+    //writeBlock(gFormat.format(28)); // retract
     zOutput.reset();
   }
 
@@ -818,7 +819,8 @@ function onSectionEnd() {
 function onClose() {
   // onCommand(COMMAND_COOLANT_OFF);
 
-  writeBlock(gFormat.format(28)); // retract
+  /* G28 is not recognized*/
+  //writeBlock(gFormat.format(28)); // retract
   zOutput.reset();
 
   setWorkPlane(new Vector(0, 0, 0)); // reset working plane
