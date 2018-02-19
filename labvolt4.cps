@@ -233,6 +233,11 @@ function forceXYZ() {
   zOutput.reset();
 }
 
+/** Force output of feed */
+function forceFeed() {
+  feedOutput.reset();
+}
+
 /** Force output of A, B, and C. */
 function forceABC() {
   aOutput.reset();
@@ -591,6 +596,7 @@ function onRadiusCompensation() {
 }
 
 function onRapid(_x, _y, _z) {
+  forceXYZ();
   var x = xOutput.format(_x);
   var y = yOutput.format(_y);
   var z = zOutput.format(_z);
@@ -607,7 +613,7 @@ function onRapid(_x, _y, _z) {
 
 function onLinear(_x, _y, _z, feed) {
   writeBlock(gFeedModal.format(94), feedOutput.format(feed));
-
+  forceXYZ();
   // at least one axis is required
   if (pendingRadiusCompensation >= 0) {
     // ensure that we end at desired position when compensation is turned off
