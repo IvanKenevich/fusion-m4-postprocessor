@@ -9,11 +9,12 @@
 IN.
 ABS
 \ This program should cause the table to move around the perimeter
-\ of a 2 by 2 inch square in a counter-clockwise direction, PAUSING AT EACH CORNER FOR 1 SECOND
+\ of a 2 by 2 inch square in a counter-clockwise direction two times,
+\ PAUSING AT EACH CORNER FOR 1 SECOND
 \ The table should end up where it began BOTH TIMES
 
 \ THIS PROGRAM SHOULD CAUSE THE BED TO MOVE
-\ THIS PROGRAM SHOULD NOT CAUSE THE CHUCK TO SPIN
+\ THIS PROGRAM SHOULD NOT CAUSE THE SPINDLE TO ROTATE
 \ THIS PROGRAM MUST BE EXECUTED WITH OPERATOR'S HAND ON THE EMERGENCY STOP BUTTON
 \ G04 means 'dwell' (wait) for the given number of milliseconds
 

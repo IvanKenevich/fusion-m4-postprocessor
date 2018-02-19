@@ -13,7 +13,7 @@ ABS
 \ then spin counter-clockwise for 2 seconds
 \ then stop forever  ._.
 \ THIS PROGRAM SHOULD NOT CAUSE THE BED TO MOVE
-\ THIS PROGRAM IS SAFE TO RUN AS LONG AS THERE IS NO TOOL IN THE CHUCK
+\ THIS PROGRAM IS SAFE TO RUN AS LONG AS THERE IS NO TOOL IN THE SPINDLE
 \ G04 means 'dwell' (wait) for the given number of milliseconds
 
 \ switch to inches (although useless here, try to comment out?)
