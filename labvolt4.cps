@@ -704,6 +704,7 @@ function onLinear5D(_x, _y, _z, _a, _b, _c, feed) {
 function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
   // one of X/Y and I/J are required and likewise
   forceXYZ();
+  writeBlock(feedOutput.format(feed));
 
   if (pendingRadiusCompensation >= 0) {
     error(localize("Radius compensation cannot be activated/deactivated for a circular move."));
@@ -720,7 +721,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
     switch (getCircularPlane()) {
     case PLANE_XY:
       writeBlock(gPlaneModal.format(17));
-      writeBlock(/*gFeedModal.format(94),*/ feedOutput.format(feed));
+
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz)); // arc center point
       forceXYZ();
@@ -730,7 +731,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       break;
     case PLANE_ZX:
       writeBlock(gPlaneModal.format(18));
-      writeBlock(/*gFeedModal.format(94),*/ feedOutput.format(feed));
+      //writeBlock(/*gFeedModal.format(94),*/ feedOutput.format(feed));
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
@@ -740,7 +741,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       break;
     case PLANE_YZ:
       writeBlock(gPlaneModal.format(19));
-      writeBlock(/*gFeedModal.format(94),*/ feedOutput.format(feed));
+      //writeBlock(/*gFeedModal.format(94),*/ feedOutput.format(feed));
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
@@ -755,7 +756,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
     switch (getCircularPlane()) {
     case PLANE_XY:
       writeBlock(gPlaneModal.format(17));
-      writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
+      //writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz)); // arc center point
       forceXYZ();
@@ -763,7 +764,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       break;
     case PLANE_ZX:
       writeBlock(gPlaneModal.format(18));
-      writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
+      //writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
@@ -771,7 +772,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       break;
    case PLANE_YZ:
       writeBlock(gPlaneModal.format(19));
-      writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
+      //writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
       writeBlock(gMotionModal.format(clockwise ? 2 : 3));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
