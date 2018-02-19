@@ -29,6 +29,8 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 
 `G91` Use incremental positioning from now on
 
+`G94 units_per_minute` Sets the feed rate in units (inches/millimeters) per minute 
+
 # M Codes
 ## Subroutines 
 A subroutine number is used to distinguish a subroutine. It must be a real number.
