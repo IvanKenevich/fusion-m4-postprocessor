@@ -130,7 +130,7 @@ function onOpen() {
   if (!machineConfiguration.isMachineCoordinate(2)) {
     cOutput.disable();
   }
-  
+
   if (!properties.separateWordsWithSpace) {
     setWordSeparator("");
   }
@@ -274,7 +274,7 @@ function setWorkPlane(abc) {
     conditional(machineConfiguration.isMachineCoordinate(1), "B" + abcFormat.format(abc.y)),
     conditional(machineConfiguration.isMachineCoordinate(2), "C" + abcFormat.format(abc.z))
   );
-  
+
   onCommand(COMMAND_LOCK_MULTI_AXIS);
 
   currentWorkPlaneABC = abc;
@@ -296,7 +296,7 @@ function getWorkPlaneMachineABC(workPlane) {
   } else {
     abc = machineConfiguration.getPreferredABC(abc);
   }
-  
+
   try {
     abc = machineConfiguration.remapABC(abc);
     currentMachineABC = abc;
@@ -308,12 +308,12 @@ function getWorkPlaneMachineABC(workPlane) {
       + conditional(machineConfiguration.isMachineCoordinate(2), " C" + abcFormat.format(abc.z))
     );
   }
-  
+
   var direction = machineConfiguration.getDirection(abc);
   if (!isSameDirection(direction, W.forward)) {
     error(localize("Orientation not supported."));
   }
-  
+
   if (!machineConfiguration.isABCSupported(abc)) {
     error(
       localize("Work plane is not supported") + ":"
@@ -331,7 +331,7 @@ function getWorkPlaneMachineABC(workPlane) {
     var R = machineConfiguration.getRemainingOrientation(abc, W);
     setRotation(R);
   }
-  
+
   return abc;
 }
 
@@ -339,14 +339,14 @@ function onSection() {
   var insertToolCall = isFirstSection() ||
     currentSection.getForceToolChange && currentSection.getForceToolChange() ||
     (tool.number != getPreviousSection().getTool().number);
-  
+
   var retracted = false; // specifies that the tool has been retracted to the safe plane
   var newWorkOffset = isFirstSection() ||
     (getPreviousSection().workOffset != currentSection.workOffset); // work offset changes
   var newWorkPlane = isFirstSection() ||
     !isSameDirection(getPreviousSection().getGlobalFinalToolAxis(), currentSection.getGlobalInitialToolAxis());
   if (insertToolCall || newWorkOffset || newWorkPlane) {
-    
+
     // stop spindle before retract during tool change
     if (insertToolCall && !isFirstSection()) {
       onCommand(COMMAND_STOP_SPINDLE);
@@ -359,7 +359,7 @@ function onSection() {
   }
 
   writeln("");
-  
+
   if (hasParameter("operation-comment")) {
     var comment = getParameter("operation-comment");
     if (comment) {
@@ -410,7 +410,7 @@ function onSection() {
     }
 */
   }
-  
+
   if (insertToolCall ||
       isFirstSection() ||
       (rpmFormat.areDifferent(tool.spindleRPM, sOutput.getCurrent())) ||
@@ -694,7 +694,7 @@ function onLinear5D(_x, _y, _z, _a, _b, _c, feed) {
 function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
   // one of X/Y and I/J are required and likewise
   forceXYZ();
-  
+
   if (pendingRadiusCompensation >= 0) {
     error(localize("Radius compensation cannot be activated/deactivated for a circular move."));
     return;
@@ -715,7 +715,8 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz)); // arc center point
       forceXYZ();
       writeBlock(xOutput.format(x), yOutput.format(y), zOutput.format(z)); // arc end point
-      writeBlock(gFormat.format(5)); // G5 indicates full circle
+      /* G05 is not recognized */
+      //writeBlock(gFormat.format(5)); // G5 indicates full circle
       break;
     case PLANE_ZX:
       writeBlock(gPlaneModal.format(18));
@@ -724,7 +725,8 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
       writeBlock(xOutput.format(x), yOutput.format(y), zOutput.format(z));
-      writeBlock(gFormat.format(5));
+      /* G05 is not recognized */
+      //writeBlock(gFormat.format(5));
       break;
     case PLANE_YZ:
       writeBlock(gPlaneModal.format(19));
@@ -733,7 +735,8 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
       writeBlock(xOutput.format(x), yOutput.format(y), zOutput.format(z));
-      writeBlock(gFormat.format(5));
+      /* G05 is not recognized */
+      //writeBlock(gFormat.format(5));
       break;
     default:
       linearize(tolerance);
