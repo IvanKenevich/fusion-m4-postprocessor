@@ -16,7 +16,7 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 
 ## Waiting
 
-`G04 milliseconds` Dwell (wait) for given number of milliseconds
+`G04 deciseconds` Dwell (wait) for given number of seconds, divided by 10
 
 ## Plane selection for arcs
 
