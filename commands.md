@@ -41,6 +41,7 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 # M Codes
 ## Spinning the bit
 `M03 rpm` Starts spinning clockwise at a given rate. See *G97*
+
 `M04` **Should spin counterclocwkwise but appears to be ABSENT. Level 4 will generate an error if it is encountered.**
 
 ## Changing tools
