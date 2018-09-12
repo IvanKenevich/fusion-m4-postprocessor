@@ -654,53 +654,6 @@ function onLinear(_x, _y, _z, feed) {
   }
 }
 
-function onRapid5D(_x, _y, _z, _a, _b, _c) {
-  if (!currentSection.isOptimizedForMachine()) {
-    error(localize("This post configuration has not been customized for 5-axis simultaneous toolpath."));
-    return;
-  }
-  if (pendingRadiusCompensation >= 0) {
-    error(localize("Radius compensation mode cannot be changed at rapid traversal."));
-    return;
-  }
-  var x = xOutput.format(_x);
-  var y = yOutput.format(_y);
-  var z = zOutput.format(_z);
-  var a = aOutput.format(_a);
-  var b = bOutput.format(_b);
-  var c = cOutput.format(_c);
-  writeBlock(gMotionModal.format(0), x, y, z, a, b, c);
-  feedOutput.reset();
-}
-
-function onLinear5D(_x, _y, _z, _a, _b, _c, feed) {
-  if (!currentSection.isOptimizedForMachine()) {
-    error(localize("This post configuration has not been customized for 5-axis simultaneous toolpath."));
-    return;
-  }
-  // at least one axis is required
-  if (pendingRadiusCompensation >= 0) {
-    error(localize("Radius compensation cannot be activated/deactivated for 5-axis move."));
-    return;
-  }
-  var x = xOutput.format(_x);
-  var y = yOutput.format(_y);
-  var z = zOutput.format(_z);
-  var a = aOutput.format(_a);
-  var b = bOutput.format(_b);
-  var c = cOutput.format(_c);
-  var f = feedOutput.format(feed);
-  if (x || y || z || a || b || c) {
-    writeBlock(gMotionModal.format(1), x, y, z, a, b, c, f);
-  } else if (f) {
-    if (getNextRecord().isMotion()) { // try not to output feed without motion
-      feedOutput.reset(); // force feed on next line
-    } else {
-      writeBlock(gMotionModal.format(1), f);
-    }
-  }
-}
-
 function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
   // one of X/Y and I/J are required and likewise
   forceXYZ();
@@ -765,7 +718,7 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
     case PLANE_ZX:
       writeBlock(gPlaneModal.format(18));
       //writeBlock(/*gFeedModal.format(94),*/feedOutput.format(feed));
-      writeBlock(gMotionModal.format(clockwise ? 2 : 3));
+      writeBlock(gMotionModal.format(clockwise ? 3 : 2));
       writeBlock(xOutput.format(cx), yOutput.format(cy), zOutput.format(cz));
       forceXYZ();
       writeBlock(xOutput.format(x), yOutput.format(y), zOutput.format(z));
