@@ -42,10 +42,10 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 ## Spinning the bit
 `M03 rpm` Starts spinning clockwise at a given rate. See *G97*
 
-`M04` **Should spin counterclocwkwise but appears to be ABSENT. Level 4 will generate an error if it is encountered.**
+`M04 rpm` **Should spin counterclocwkwise but appears to make it spin clockwise.**
 
 ## Changing tools
-`M04` is labeled "Tool" in verbose mode. Needs to be investigated.
+`M06` is labeled "Tool" in verbose mode. Needs to be investigated.
 
 ## Subroutines 
 A subroutine number is used to distinguish a subroutine. It must be a real number.
