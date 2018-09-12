@@ -39,6 +39,13 @@ If endpoint is not on the circle, the arc will end when the line normal to the c
 `G94 units_per_minute` Sets the feed rate in units (inches/millimeters) per minute 
 
 # M Codes
+## Spinning the bit
+`M03 rpm` Starts spinning clockwise at a given rate. See *G97*
+`M04` **Should spin counterclocwkwise but appears to be ABSENT. Level 4 will generate an error if it is encountered.**
+
+## Changing tools
+`M04` is labeled "Tool" in verbose mode. Needs to be investigated.
+
 ## Subroutines 
 A subroutine number is used to distinguish a subroutine. It must be a real number.
 
